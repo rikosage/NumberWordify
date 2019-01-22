@@ -8,8 +8,8 @@
 
 namespace rikosage\NumberWords;
 
-use rikosage\NumberWords\LocaleStrategy\RuLocaleStrategy;
-use rikosage\NumberWords\Base\Declinable;
+use rikosage\NumberWords\Base\BaseRank;
+use rikosage\NumberWords\Morpher\RuMorpher;
 use rikosage\NumberWords\Rank\ElevenToTwelve;
 use rikosage\NumberWords\Rank\Hundred;
 use rikosage\NumberWords\Rank\Single;
@@ -22,27 +22,26 @@ class Formatter
     const MILLION_UNIT = 2;
     const BILLION_UNIT = 3;
 
-    public $locales = [
-        'ru' => RuLocaleStrategy::class,
-    ];
-
-    /* @var Single */
+    /* @var BaseRank */
     public $single;
 
+    /* @var BaseRank */
     public $elevenToTwenty;
 
+    /* @var BaseRank */
     public $tens;
 
+    /* @var BaseRank */
     public $hundred;
 
     /**
-     * @var RuLocaleStrategy
+     * @var RuMorpher
      */
-    private $locale;
+    private $morpher;
 
-    public function __construct($locale = RuLocaleStrategy::class)
+    public function __construct($locale = RuMorpher::class)
     {
-        $this->locale = new $locale;
+        $this->morpher = new $locale;
 
         $this->hundred =new Hundred();
         $this->elevenToTwenty = new ElevenToTwelve();
@@ -63,7 +62,7 @@ class Formatter
         $result = [];
 
         foreach ($ranks as $rank => $value) {
-            
+
             $innerResult = [];
 
             $innerRank = str_split($value);
@@ -74,8 +73,9 @@ class Formatter
 
             $innerResult[] = $this->hundred->getWord($hundred);
 
-            $gender = $this->locale->getUnitGender($rank);
-            $this->single->setGender($gender);
+            $this->single->setGender(
+                $this->morpher->getUnitGender($rank)
+            );
 
             if ($ten == 1) {
                 $innerResult[] = $this->elevenToTwenty->getWord($ten);
@@ -83,7 +83,7 @@ class Formatter
                 $innerResult[] = $this->tens->getWord($ten);
                 $innerResult[] = $this->single->getWord($single);
             }
-            
+
             if (empty ($innerResult)) {
                 continue;
             }
@@ -92,10 +92,10 @@ class Formatter
                 return (bool)$item;
             });
 
-            $result[] = implode(" ", $innerResult) . " " . $this->locale->morph(
-                $value,
-                $this->locale->getUnitItems($rank)
-            );
+            $result[] = vsprintf("%s %s", [
+                implode(" ", $innerResult),
+                $this->morpher->morph($value, $this->morpher->getUnitItems($rank))
+            ]);
         }
 
         krsort($result);
