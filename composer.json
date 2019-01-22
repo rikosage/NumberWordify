@@ -1,0 +1,17 @@
+{
+    "name": "rikosage/number-words",
+    "description": "Simple formatting any numbers to words",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rikosage",
+            "email": "sageriko@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "rikosage\\NumberWords\\": "src"
+        }
+    }
+}
