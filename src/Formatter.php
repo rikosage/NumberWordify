@@ -98,41 +98,53 @@ class Formatter
                 continue;
             }
 
-            $innerResult = [];
-
-            $innerRank = str_split($value);
-            for ($i = count($innerRank); $i < 3; $i++) {
-                array_unshift($innerRank, 0);
-            }
-
-            list($hundred, $ten, $single) = $innerRank;
-            $innerResult[] = $this->hundred->getWord($hundred);
-
             $this->single->setGender($morpher->getUnitGender($rank));
 
-            if ($ten == 1) {
-                $innerResult[] = $this->elevenToTwenty->getWord($single);
-            } else {
-                $innerResult[] = $this->tens->getWord($ten);
-                $innerResult[] = $this->single->getWord($single);
-            }
+            $preResult = $this->buildPreResult($value);
 
-            if (empty ($innerResult)) {
+            if (!$preResult) {
                 continue;
             }
 
-            $innerResult = array_filter($innerResult, function($item){
-                return (bool)$item;
-            });
-
             $result[] = vsprintf("%s %s", [
-                implode(" ", $innerResult),
+                implode(" ", $preResult),
                 $morpher->morph($value, $morpher->getUnitItems($rank))
             ]);
         }
 
         krsort($result);
         return implode(" ", array_map('trim', $result));
+    }
+
+    private function buildPreResult($value)
+    {
+        list($hundred, $ten, $single) = $this->getInnerRanks($value);
+
+        $innerResult = [$this->hundred->getWord($hundred)];
+
+        if ($ten == 1) {
+            $innerResult[] = $this->elevenToTwenty->getWord($single);
+        } else {
+            $innerResult[] = $this->tens->getWord($ten);
+            $innerResult[] = $this->single->getWord($single);
+        }
+
+        if (empty ($innerResult)) {
+            return false;
+        }
+
+        return array_filter($innerResult, function($item){
+            return (bool)$item;
+        });
+    }
+
+    private function getInnerRanks($value)
+    {
+        $innerRank = str_split($value);
+        for ($i = count($innerRank); $i < 3; $i++) {
+            array_unshift($innerRank, 0);
+        }
+        return $innerRank;
     }
 
 }
