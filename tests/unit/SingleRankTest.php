@@ -6,11 +6,11 @@
  * Time: 17:26
  */
 
-namespace rikosage\NumberWords\tests\unit;
+namespace rikosage\NumberWordify\tests\unit;
 
 use PHPUnit\Framework\TestCase;
-use rikosage\NumberWords\Base\Declinable;
-use rikosage\NumberWords\Rank\Single;
+use rikosage\NumberWordify\Base\Declinable;
+use rikosage\NumberWordify\Rank\Single;
 
 class SingleRankTest extends TestCase
 {

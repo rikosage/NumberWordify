@@ -6,12 +6,12 @@
  * Time: 16:11
  */
 
-namespace rikosage\NumberWords\Unit;
+namespace rikosage\NumberWordify\Unit;
 
 /**
  * Вспомогательные единицы измерения. Используются в случае, если они не нужны вообще.
  *
- * @package rikosage\NumberWords\Unit
+ * @package rikosage\NumberWordify\Unit
  */
 class NullUnit implements UnitInterface
 {

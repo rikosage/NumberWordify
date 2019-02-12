@@ -6,13 +6,13 @@
  * Time: 23:12
  */
 
-namespace rikosage\NumberWords\Rank;
+namespace rikosage\NumberWordify\Rank;
 
-use rikosage\NumberWords\Base\BaseRank;
+use rikosage\NumberWordify\Base\BaseRank;
 
 /**
  * Вспомогательные слова для разряда десятков
- * @package rikosage\NumberWords\Rank
+ * @package rikosage\NumberWordify\Rank
  */
 class Ten extends BaseRank
 {

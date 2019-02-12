@@ -6,15 +6,15 @@
  * Time: 00:43
  */
 
-namespace rikosage\NumberWords\Rank;
+namespace rikosage\NumberWordify\Rank;
 
 
-use rikosage\NumberWords\Base\Declinable;
-use rikosage\NumberWords\Base\BaseRank;
+use rikosage\NumberWordify\Base\Declinable;
+use rikosage\NumberWordify\Base\BaseRank;
 
 /**
  * Вспомогательные слова для разряда единиц.
- * @package rikosage\NumberWords\Rank
+ * @package rikosage\NumberWordify\Rank
  */
 class Single extends BaseRank implements Declinable
 {

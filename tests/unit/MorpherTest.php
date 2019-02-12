@@ -6,12 +6,12 @@
  * Time: 17:37
  */
 
-namespace rikosage\NumberWords\tests\unit;
+namespace rikosage\NumberWordify\tests\unit;
 
 use PHPUnit\Framework\TestCase;
-use rikosage\NumberWords\Base\Morpher;
-use rikosage\NumberWords\Unit\Currency\Rouble;
-use rikosage\NumberWords\Unit\NullUnit;
+use rikosage\NumberWordify\Base\Morpher;
+use rikosage\NumberWordify\Unit\Currency\Rouble;
+use rikosage\NumberWordify\Unit\NullUnit;
 
 class MorpherTest extends TestCase
 {

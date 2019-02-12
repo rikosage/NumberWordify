@@ -6,11 +6,11 @@
  * Time: 00:52
  */
 
-namespace rikosage\NumberWords\Base;
+namespace rikosage\NumberWordify\Base;
 
 /**
  * Class BaseRank реализует базовое хранилище склоняемых слов и метод для их получения
- * @package rikosage\NumberWords\Base
+ * @package rikosage\NumberWordify\Base
  */
 abstract class BaseRank
 {

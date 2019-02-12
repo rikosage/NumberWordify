@@ -6,11 +6,11 @@
  * Time: 17:47
  */
 
-namespace rikosage\NumberWords\tests\unit;
+namespace rikosage\NumberWordify\tests\unit;
 
 use PHPUnit\Framework\TestCase;
-use rikosage\NumberWords\Formatter;
-use rikosage\NumberWords\Unit\Currency\Rouble;
+use rikosage\NumberWordify\Formatter;
+use rikosage\NumberWordify\Unit\Currency\Rouble;
 
 class FormatterTest extends TestCase
 {

@@ -6,22 +6,22 @@
  * Time: 22:03
  */
 
-namespace rikosage\NumberWords;
+namespace rikosage\NumberWordify;
 
-use rikosage\NumberWords\Base\BaseRank;
-use rikosage\NumberWords\Base\Morpher;
-use rikosage\NumberWords\Rank\ElevenToTwelve;
-use rikosage\NumberWords\Rank\Hundred;
-use rikosage\NumberWords\Rank\Single;
-use rikosage\NumberWords\Rank\Ten;
-use rikosage\NumberWords\Unit\DerivativeInterface;
-use rikosage\NumberWords\Unit\NullUnit;
-use rikosage\NumberWords\Unit\UnitInterface;
+use rikosage\NumberWordify\Base\BaseRank;
+use rikosage\NumberWordify\Base\Morpher;
+use rikosage\NumberWordify\Rank\ElevenToTwelve;
+use rikosage\NumberWordify\Rank\Hundred;
+use rikosage\NumberWordify\Rank\Single;
+use rikosage\NumberWordify\Rank\Ten;
+use rikosage\NumberWordify\Unit\DerivativeInterface;
+use rikosage\NumberWordify\Unit\NullUnit;
+use rikosage\NumberWordify\Unit\UnitInterface;
 
 /**
  * Основной компонент библиотеки с методами сборки числа по разрядам.
  *
- * @package rikosage\NumberWords
+ * @package rikosage\NumberWordify
  */
 class Formatter
 {

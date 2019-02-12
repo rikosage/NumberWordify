@@ -6,15 +6,15 @@
  * Time: 23:42
  */
 
-namespace rikosage\NumberWords\Base;
+namespace rikosage\NumberWordify\Base;
 
-use rikosage\NumberWords\Formatter;
-use rikosage\NumberWords\Unit\UnitInterface;
+use rikosage\NumberWordify\Formatter;
+use rikosage\NumberWordify\Unit\UnitInterface;
 
 /**
  * Основной компонент, выполняющий склонение числительных
  *
- * @package rikosage\NumberWords\Base
+ * @package rikosage\NumberWordify\Base
  */
 class Morpher
 {

@@ -6,11 +6,11 @@
  * Time: 00:42
  */
 
-namespace rikosage\NumberWords\Base;
+namespace rikosage\NumberWordify\Base;
 
 /**
  * Интерфейс для склоняемых разрядов\единиц
- * @package rikosage\NumberWords\Base
+ * @package rikosage\NumberWordify\Base
  */
 interface Declinable
 {

@@ -6,14 +6,14 @@
  * Time: 17:32
  */
 
-namespace rikosage\NumberWords\tests\unit;
+namespace rikosage\NumberWordify\tests\unit;
 
 use PHPUnit\Framework\TestCase;
-use rikosage\NumberWords\Unit\Currency\Cent;
-use rikosage\NumberWords\Unit\Currency\Copeck;
-use rikosage\NumberWords\Unit\Currency\Dollar;
-use rikosage\NumberWords\Unit\Currency\Hryvnia;
-use rikosage\NumberWords\Unit\Currency\Rouble;
+use rikosage\NumberWordify\Unit\Currency\Cent;
+use rikosage\NumberWordify\Unit\Currency\Copeck;
+use rikosage\NumberWordify\Unit\Currency\Dollar;
+use rikosage\NumberWordify\Unit\Currency\Hryvnia;
+use rikosage\NumberWordify\Unit\Currency\Rouble;
 
 class CurrencyTest extends TestCase
 {

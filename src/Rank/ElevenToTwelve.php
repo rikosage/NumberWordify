@@ -6,14 +6,14 @@
  * Time: 22:56
  */
 
-namespace rikosage\NumberWords\Rank;
+namespace rikosage\NumberWordify\Rank;
 
-use rikosage\NumberWords\Base\BaseRank;
+use rikosage\NumberWordify\Base\BaseRank;
 
 /**
  * Вспомогательные слова между 10 и 19.
  *
- * @package rikosage\NumberWords\Rank
+ * @package rikosage\NumberWordify\Rank
  */
 class ElevenToTwelve extends BaseRank
 {

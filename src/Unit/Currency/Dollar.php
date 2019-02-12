@@ -6,16 +6,16 @@
  * Time: 15:48
  */
 
-namespace rikosage\NumberWords\Unit\Currency;
+namespace rikosage\NumberWordify\Unit\Currency;
 
-use rikosage\NumberWords\Base\Declinable;
-use rikosage\NumberWords\Unit\DerivativeInterface;
-use rikosage\NumberWords\Unit\UnitInterface;
+use rikosage\NumberWordify\Base\Declinable;
+use rikosage\NumberWordify\Unit\DerivativeInterface;
+use rikosage\NumberWordify\Unit\UnitInterface;
 
 /**
  * Единица измерения: доллар
  *
- * @package rikosage\NumberWords\Unit\Currency
+ * @package rikosage\NumberWordify\Unit\Currency
  */
 class Dollar implements UnitInterface, DerivativeInterface
 {

@@ -6,14 +6,14 @@
  * Time: 22:59
  */
 
-namespace rikosage\NumberWords\Rank;
+namespace rikosage\NumberWordify\Rank;
 
-use rikosage\NumberWords\Base\BaseRank;
+use rikosage\NumberWordify\Base\BaseRank;
 
 /**
  * Вспомогательные слова для разряда сотен.
  *
- * @package rikosage\NumberWords\Rank
+ * @package rikosage\NumberWordify\Rank
  */
 class Hundred extends BaseRank
 {

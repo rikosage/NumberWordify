@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "rikosage\\NumberWords\\": "src"
+            "rikosage\\NumberWordify\\": "src"
         }
     },
     "require-dev": {

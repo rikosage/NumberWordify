@@ -6,13 +6,13 @@
  * Time: 16:26
  */
 
-namespace rikosage\NumberWords\Unit;
+namespace rikosage\NumberWordify\Unit;
 
 /**
  * Этот интерфейс должны наследовать единицы измерения, у которых есть специальные слова для дробной части.
  * Например, для рублей это копейки, для долларов - центы
  *
- * @package rikosage\NumberWords\Unit
+ * @package rikosage\NumberWordify\Unit
  */
 interface DerivativeInterface
 {

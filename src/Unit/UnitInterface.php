@@ -6,12 +6,12 @@
  * Time: 15:44
  */
 
-namespace rikosage\NumberWords\Unit;
+namespace rikosage\NumberWordify\Unit;
 
 /**
  * Интерфейс для единиц измерения
  *
- * @package rikosage\NumberWords\Unit
+ * @package rikosage\NumberWordify\Unit
  */
 interface UnitInterface
 {
