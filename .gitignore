@@ -1,5 +1,5 @@
 .idea
 vendor
 test.php
-.*
+.phpunit.result.cache
 log
