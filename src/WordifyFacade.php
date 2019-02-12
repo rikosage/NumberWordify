@@ -29,7 +29,7 @@ class WordifyFacade
         list($real, $float) = explode('.', sprintf("%0.2f", round((float)($number), 2)));
 
         $formatter = new Formatter(new Rouble());
-        $result = $formatter->asWords($real);
+        $result = $formatter->asWords((int)$real);
 
         $result .= " {$float} кп.";
 
