@@ -44,6 +44,9 @@ class Single extends BaseRank implements Declinable
      */
     public function getWord($key): string
     {
+        if (!$this->gender) {
+            return $this->words[$key];
+        }
         $dependent = call_user_func([$this, $this->genderMethodMap[$this->gender]]);
         return isset($dependent[$key]) ? $dependent[$key] : $this->words[$key];
 
@@ -52,7 +55,7 @@ class Single extends BaseRank implements Declinable
     /**
      * @inheritdoc
      */
-    public function setGender(string $gender)
+    public function setGender(?string $gender)
     {
         $this->gender = $gender;
     }

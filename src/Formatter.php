@@ -50,7 +50,7 @@ class Formatter
      * Formatter constructor.
      * @param UnitInterface|null $unit Единицы измерения
      */
-    public function __construct(?UnitInterface $unit)
+    public function __construct(UnitInterface $unit = null)
     {
         $this->unit = $unit ?: new NullUnit();
 
@@ -111,7 +111,7 @@ class Formatter
             $this->single->setGender($morpher->getUnitGender($rank));
 
             if ($ten == 1) {
-                $innerResult[] = $this->elevenToTwenty->getWord($single == 0 ? $single : $ten);
+                $innerResult[] = $this->elevenToTwenty->getWord($single);
             } else {
                 $innerResult[] = $this->tens->getWord($ten);
                 $innerResult[] = $this->single->getWord($single);
