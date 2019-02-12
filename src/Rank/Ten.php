@@ -10,6 +10,10 @@ namespace rikosage\NumberWords\Rank;
 
 use rikosage\NumberWords\Base\BaseRank;
 
+/**
+ * Вспомогательные слова для разряда десятков
+ * @package rikosage\NumberWords\Rank
+ */
 class Ten extends BaseRank
 {
     protected $words = [

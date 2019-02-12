@@ -10,6 +10,11 @@ namespace rikosage\NumberWords\Rank;
 
 use rikosage\NumberWords\Base\BaseRank;
 
+/**
+ * Вспомогательные слова между 10 и 19.
+ *
+ * @package rikosage\NumberWords\Rank
+ */
 class ElevenToTwelve extends BaseRank
 {
     protected $words = [

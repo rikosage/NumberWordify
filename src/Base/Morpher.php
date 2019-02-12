@@ -11,6 +11,11 @@ namespace rikosage\NumberWords\Base;
 use rikosage\NumberWords\Formatter;
 use rikosage\NumberWords\Unit\UnitInterface;
 
+/**
+ * Основной компонент, выполняющий склонение числительных
+ *
+ * @package rikosage\NumberWords\Base
+ */
 class Morpher
 {
     private $config = [
@@ -35,11 +40,22 @@ class Morpher
     /* @var UnitInterface|null */
     private $unit;
 
+    /**
+     * В конструктор передаются единицы измерения
+     *
+     * @param UnitInterface|null $unit
+     */
     public function __construct(?UnitInterface $unit)
     {
         $this->unit = $unit;
     }
 
+    /**
+     * Получить род единиц измерения
+     *
+     * @param int $kind
+     * @return int
+     */
     public function getUnitGender($kind)
     {
         if ($kind === Formatter::SINGLE_UNIT_ITEM) {
@@ -48,6 +64,12 @@ class Morpher
         return $this->config[$kind]['gender'];
     }
 
+    /**
+     * Получить варианты для склонения
+     *
+     * @param int $kind
+     * @return array
+     */
     public function getUnitItems($kind) : array
     {
         if ($kind === Formatter::SINGLE_UNIT_ITEM) {
@@ -56,6 +78,13 @@ class Morpher
         return $this->config[$kind]['items'];
     }
 
+    /**
+     * Выбирает нужное склонение из возможных
+     *
+     * @param int $num
+     * @param array $variants
+     * @return string|null
+     */
     public function morph(int $num, array $variants) : ?string
     {
         if (empty($variants)) {

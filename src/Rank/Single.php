@@ -12,8 +12,13 @@ namespace rikosage\NumberWords\Rank;
 use rikosage\NumberWords\Base\Declinable;
 use rikosage\NumberWords\Base\BaseRank;
 
+/**
+ * Вспомогательные слова для разряда единиц.
+ * @package rikosage\NumberWords\Rank
+ */
 class Single extends BaseRank implements Declinable
 {
+    /* @var int */
     private $gender;
 
     private $genderMethodMap = [
@@ -34,6 +39,9 @@ class Single extends BaseRank implements Declinable
         9 => 'девять',
     ];
 
+    /**
+     * @inheritdoc
+     */
     public function getWord($key): string
     {
         $dependent = call_user_func([$this, $this->genderMethodMap[$this->gender]]);
@@ -41,16 +49,29 @@ class Single extends BaseRank implements Declinable
 
     }
 
+    /**
+     * @inheritdoc
+     */
     public function setGender(string $gender)
     {
         $this->gender = $gender;
     }
 
+    /**
+     * Склонения для зависимых чисел в мужском роде
+     *
+     * @return array
+     */
     private function getMasculineVariants()
     {
         return [1 => 'один', 2 => 'два'];
     }
 
+    /**
+     * Склонения для зависимых чисел в женском роде
+     *
+     * @return array
+     */
     private function getFeminineVariant()
     {
         return [1 => 'одна', 2 => 'две'];

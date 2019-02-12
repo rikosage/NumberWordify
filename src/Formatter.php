@@ -18,6 +18,11 @@ use rikosage\NumberWords\Unit\DerivativeInterface;
 use rikosage\NumberWords\Unit\NullUnit;
 use rikosage\NumberWords\Unit\UnitInterface;
 
+/**
+ * Основной компонент библиотеки с методами сборки числа по разрядам.
+ *
+ * @package rikosage\NumberWords
+ */
 class Formatter
 {
     const SINGLE_UNIT_ITEM = 0;
@@ -41,6 +46,10 @@ class Formatter
     /* @var UnitInterface|DerivativeInterface */
     private $unit;
 
+    /**
+     * Formatter constructor.
+     * @param UnitInterface|null $unit Единицы измерения
+     */
     public function __construct(?UnitInterface $unit)
     {
         $this->unit = $unit ?: new NullUnit();
@@ -51,6 +60,10 @@ class Formatter
         $this->single = new Single();
     }
 
+    /**
+     * @param number $number Число для перевода
+     * @return string Число словами
+     */
     public function asWords($number) : string
     {
         list($real, $float) = explode('.', sprintf("%0.2f", round((float)($number), 2)));
@@ -58,15 +71,22 @@ class Formatter
         $string = $this->process($real);
 
         if ((int)$float && $this->unit instanceof DerivativeInterface) {
-            $string .= " " . $this->process((int)$float, true);
+            $string .= " " . $this->process((int)$float, $this->unit->getDerivative());
         }
 
         return $string;
     }
 
-    protected function process(int $number, $derivative = false)
+    /**
+     * Выполняет разбиение числа по разрядам, и переводит каждый разряд в слова
+     *
+     * @param int $number
+     * @param UnitInterface|null $derivative
+     * @return string
+     */
+    protected function process(int $number, ?UnitInterface $derivative = null)
     {
-        $morpher = new Morpher($derivative ? $this->unit->getDerivative() : $this->unit);
+        $morpher = new Morpher($derivative ?: $this->unit);
 
         $ranks = str_split(strrev($number), 3);
         $ranks = array_map('strrev', $ranks);
@@ -84,13 +104,11 @@ class Formatter
             for ($i = count($innerRank); $i < 3; $i++) {
                 array_unshift($innerRank, 0);
             }
-            list($hundred, $ten, $single) = $innerRank;
 
+            list($hundred, $ten, $single) = $innerRank;
             $innerResult[] = $this->hundred->getWord($hundred);
 
-            $this->single->setGender(
-                $morpher->getUnitGender($rank)
-            );
+            $this->single->setGender($morpher->getUnitGender($rank));
 
             if ($ten == 1) {
                 $innerResult[] = $this->elevenToTwenty->getWord($single == 0 ? $single : $ten);
@@ -114,8 +132,7 @@ class Formatter
         }
 
         krsort($result);
-        $result = array_map('trim', $result);
-        return implode(" ", $result);
+        return implode(" ", array_map('trim', $result));
     }
 
 }
