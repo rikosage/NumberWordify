@@ -55,7 +55,7 @@ class Single extends BaseRank implements Declinable
     /**
      * @inheritdoc
      */
-    public function setGender(?string $gender)
+    public function setGender($gender)
     {
         $this->gender = $gender;
     }

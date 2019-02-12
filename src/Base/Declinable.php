@@ -20,8 +20,8 @@ interface Declinable
     /**
      * Установить род разряда\единицы
      *
-     * @param string $gender
+     * @param string/int|null $gender
      * @return mixed
      */
-    public function setGender(string $gender);
+    public function setGender($gender);
 }

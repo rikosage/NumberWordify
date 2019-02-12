@@ -12,7 +12,7 @@ use rikosage\NumberWordify\Unit\Currency\Rouble;
 
 /**
  * Класс-обертка, для частоиспользуемых методов и форматов
- * 
+ *
  * @package rikosage\NumberWordify
  */
 class WordifyFacade

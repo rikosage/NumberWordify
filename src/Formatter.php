@@ -31,7 +31,7 @@ class Formatter
     const BILLION_UNIT = 3;
     const TRILLION_UNIT = 4;
 
-    /* @var BaseRank */
+    /* @var Single */
     public $single;
 
     /* @var BaseRank */
@@ -68,7 +68,7 @@ class Formatter
     {
         list($real, $float) = explode('.', sprintf("%0.2f", round((float)($number), 2)));
 
-        $string = $this->process($real);
+        $string = $this->process((int)$real);
 
         if ((int)$float && $this->unit instanceof DerivativeInterface) {
             $string .= " " . $this->process((int)$float, $this->unit->getDerivative());
