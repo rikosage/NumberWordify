@@ -9,11 +9,14 @@
 namespace rikosage\NumberWords;
 
 use rikosage\NumberWords\Base\BaseRank;
-use rikosage\NumberWords\Morpher\RuMorpher;
+use rikosage\NumberWords\Base\Morpher;
 use rikosage\NumberWords\Rank\ElevenToTwelve;
 use rikosage\NumberWords\Rank\Hundred;
 use rikosage\NumberWords\Rank\Single;
 use rikosage\NumberWords\Rank\Ten;
+use rikosage\NumberWords\Unit\DerivativeInterface;
+use rikosage\NumberWords\Unit\NullUnit;
+use rikosage\NumberWords\Unit\UnitInterface;
 
 class Formatter
 {
@@ -21,6 +24,7 @@ class Formatter
     const THOUSAND_UNIT_ITEM = 1;
     const MILLION_UNIT = 2;
     const BILLION_UNIT = 3;
+    const TRILLION_UNIT = 4;
 
     /* @var BaseRank */
     public $single;
@@ -34,16 +38,14 @@ class Formatter
     /* @var BaseRank */
     public $hundred;
 
-    /**
-     * @var RuMorpher
-     */
-    private $morpher;
+    /* @var UnitInterface|DerivativeInterface */
+    private $unit;
 
-    public function __construct($locale = RuMorpher::class)
+    public function __construct(?UnitInterface $unit)
     {
-        $this->morpher = new $locale;
+        $this->unit = $unit ?: new NullUnit();
 
-        $this->hundred =new Hundred();
+        $this->hundred = new Hundred();
         $this->elevenToTwenty = new ElevenToTwelve();
         $this->tens = new Ten();
         $this->single = new Single();
@@ -53,15 +55,28 @@ class Formatter
     {
         list($real, $float) = explode('.', sprintf("%0.2f", round((float)($number), 2)));
 
-        if (!(int)$float) {
-            $float = "00";
+        $string = $this->process($real);
+
+        if ((int)$float && $this->unit instanceof DerivativeInterface) {
+            $string .= " " . $this->process((int)$float, true);
         }
 
-        $ranks = str_split(strrev($real), 3);
+        return $string;
+    }
+
+    protected function process(int $number, $derivative = false)
+    {
+        $morpher = new Morpher($derivative ? $this->unit->getDerivative() : $this->unit);
+
+        $ranks = str_split(strrev($number), 3);
         $ranks = array_map('strrev', $ranks);
         $result = [];
 
         foreach ($ranks as $rank => $value) {
+
+            if ($value === "000") {
+                continue;
+            }
 
             $innerResult = [];
 
@@ -74,11 +89,11 @@ class Formatter
             $innerResult[] = $this->hundred->getWord($hundred);
 
             $this->single->setGender(
-                $this->morpher->getUnitGender($rank)
+                $morpher->getUnitGender($rank)
             );
 
             if ($ten == 1) {
-                $innerResult[] = $this->elevenToTwenty->getWord($ten);
+                $innerResult[] = $this->elevenToTwenty->getWord($single == 0 ? $single : $ten);
             } else {
                 $innerResult[] = $this->tens->getWord($ten);
                 $innerResult[] = $this->single->getWord($single);
@@ -94,13 +109,12 @@ class Formatter
 
             $result[] = vsprintf("%s %s", [
                 implode(" ", $innerResult),
-                $this->morpher->morph($value, $this->morpher->getUnitItems($rank))
+                $morpher->morph($value, $morpher->getUnitItems($rank))
             ]);
         }
 
         krsort($result);
         $result = array_map('trim', $result);
-
         return implode(" ", $result);
     }
 

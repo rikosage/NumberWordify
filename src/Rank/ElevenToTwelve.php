@@ -13,7 +13,7 @@ use rikosage\NumberWords\Base\BaseRank;
 class ElevenToTwelve extends BaseRank
 {
     protected $words = [
-        0 => '',
+        0 => 'десять',
         1 => 'одиннадцать',
         2 => 'двенадцать',
         3 => 'тринадцать',

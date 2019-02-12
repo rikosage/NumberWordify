@@ -6,19 +6,14 @@
  * Time: 23:42
  */
 
-namespace rikosage\NumberWords\Morpher;
+namespace rikosage\NumberWords\Base;
 
-use rikosage\NumberWords\Base\Declinable;
-use rikosage\NumberWords\Base\MorpherInterface;
 use rikosage\NumberWords\Formatter;
+use rikosage\NumberWords\Unit\UnitInterface;
 
-class RuMorpher implements MorpherInterface
+class Morpher
 {
     private $config = [
-        Formatter::SINGLE_UNIT_ITEM => [
-            'gender' => Declinable::TYPE_MASCULINE,
-            'items' => ['рубль', 'рубля', 'рублей'],
-        ],
         Formatter::THOUSAND_UNIT_ITEM => [
             'gender' => Declinable::TYPE_FEMININE,
             'items' => ['тысяча', 'тысячи', 'тысяч'],
@@ -31,20 +26,42 @@ class RuMorpher implements MorpherInterface
             'gender' => Declinable::TYPE_MASCULINE,
             'items' => ['миллиард', 'милиарда', 'миллиардов'],
         ],
+        Formatter::TRILLION_UNIT => [
+            'gender' => Declinable::TYPE_MASCULINE,
+            'items' => ['триллион', 'триллиона', 'триллионов'],
+        ],
     ];
+
+    /* @var UnitInterface|null */
+    private $unit;
+
+    public function __construct(?UnitInterface $unit)
+    {
+        $this->unit = $unit;
+    }
 
     public function getUnitGender($kind)
     {
+        if ($kind === Formatter::SINGLE_UNIT_ITEM) {
+            return $this->unit ? $this->unit->getGender() : Declinable::TYPE_MASCULINE;
+        }
         return $this->config[$kind]['gender'];
     }
 
-    public function getUnitItems($kind)
+    public function getUnitItems($kind) : array
     {
+        if ($kind === Formatter::SINGLE_UNIT_ITEM) {
+            return $this->unit ? $this->unit->getItems() : [];
+        }
         return $this->config[$kind]['items'];
     }
 
-    public function morph(int $num, array $variants) : string
+    public function morph(int $num, array $variants) : ?string
     {
+        if (empty($variants)) {
+            return null;
+        }
+
         $cases = [2, 0, 1, 1, 1, 2];
         return $variants[($num % 100 > 4 && $num % 100 < 20) ? 2 : $cases[min($num % 10, 5)]];
     }
