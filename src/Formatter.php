@@ -116,6 +116,12 @@ class Formatter
         return implode(" ", array_map('trim', $result));
     }
 
+    /**
+     * Выполняет сборку части числа (миллионы, тысячи etc) в виде массива
+     *
+     * @param integer $value
+     * @return array|bool
+     */
     private function buildPreResult($value)
     {
         list($hundred, $ten, $single) = $this->getInnerRanks($value);
@@ -138,6 +144,12 @@ class Formatter
         });
     }
 
+    /**
+     * Разбивает часть числа на разряды, с дополненными нулями в начале
+     *
+     * @param integer $value
+     * @return array
+     */
     private function getInnerRanks($value)
     {
         $innerRank = str_split($value);

@@ -21,7 +21,6 @@ class WordifyFacade
      * Возвращает число в виде строки прописью так, как обычно используется в документах.
      *
      * @param float $number
-     * @param string $unit
      * @return string
      */
     public static function toDocumentInRoubles($number)
@@ -31,7 +30,7 @@ class WordifyFacade
         $formatter = new Formatter(new Rouble());
         $result = $formatter->asWords((int)$real);
 
-        $result .= " {$float} кп.";
+        $result .= " {$float} коп.";
 
         return $result;
     }
