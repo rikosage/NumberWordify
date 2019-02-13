@@ -27,5 +27,6 @@
     "require-dev": {
         "phpunit/phpunit": "^8.0"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "prefer-stable" : true
 }
