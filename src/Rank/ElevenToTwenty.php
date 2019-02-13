@@ -15,7 +15,7 @@ use rikosage\NumberWordify\Base\BaseRank;
  *
  * @package rikosage\NumberWordify\Rank
  */
-class ElevenToTwelve extends BaseRank
+class ElevenToTwenty extends BaseRank
 {
     protected $words = [
         0 => 'десять',

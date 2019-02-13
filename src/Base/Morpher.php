@@ -29,7 +29,7 @@ class Morpher
         ],
         Formatter::BILLION_UNIT => [
             'gender' => Declinable::TYPE_MASCULINE,
-            'items' => ['миллиард', 'милиарда', 'миллиардов'],
+            'items' => ['миллиард', 'миллиарда', 'миллиардов'],
         ],
         Formatter::TRILLION_UNIT => [
             'gender' => Declinable::TYPE_MASCULINE,

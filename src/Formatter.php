@@ -10,7 +10,7 @@ namespace rikosage\NumberWordify;
 
 use rikosage\NumberWordify\Base\BaseRank;
 use rikosage\NumberWordify\Base\Morpher;
-use rikosage\NumberWordify\Rank\ElevenToTwelve;
+use rikosage\NumberWordify\Rank\ElevenToTwenty;
 use rikosage\NumberWordify\Rank\Hundred;
 use rikosage\NumberWordify\Rank\Single;
 use rikosage\NumberWordify\Rank\Ten;
@@ -55,7 +55,7 @@ class Formatter
         $this->unit = $unit ?: new NullUnit();
 
         $this->hundred = new Hundred();
-        $this->elevenToTwenty = new ElevenToTwelve();
+        $this->elevenToTwenty = new ElevenToTwenty();
         $this->tens = new Ten();
         $this->single = new Single();
     }
