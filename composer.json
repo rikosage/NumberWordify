@@ -1,6 +1,6 @@
 {
-    "name": "rikosage/number-words",
-    "description": "Simple formatting any numbers to words",
+    "name": "rikosage/number-wordify",
+    "description": "Simple formatter for converting numbers to a string",
     "type": "library",
     "license": "MIT",
     "authors": [
