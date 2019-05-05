@@ -33,7 +33,7 @@ class Hryvnia implements UnitInterface, DerivativeInterface
      */
     public function getItems()
     {
-        return ['гривна', 'гривныы', 'гривен'];
+        return ['гривна', 'гривны', 'гривен'];
     }
 
     /**
